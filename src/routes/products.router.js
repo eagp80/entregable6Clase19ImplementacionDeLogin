@@ -45,11 +45,12 @@ router.get('/:pid', (req,res)=>{
 //al no existir el id del producto, debe devolver un objeto
 // con un error indicando que el producto no existe.
 
+
 router.post('/',uploader.single('image'), (req,res)=>{
     //con este metodo solicitamos crear producto
     const {title, description, code,price,status, stock, category, thumbnails, image} = req.body;       
     productManager.addProduct(title, description, code,price,status, stock, category, thumbnails);
-    res.send({status:"ok", message :"Producto añadido" });
+    res.send({status:"ok", message :"Producto añadido e imagen cargada" });
 
 })// falta revisar si se guarda formatos de arreglo de thumbnails y formatos numnber, true y string
 router.put('/:pid',uploader.single('image'), (req,res)=>{
