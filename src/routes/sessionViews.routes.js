@@ -2,6 +2,7 @@ import { Router } from "express";
 import authMdw from "../middleware/auth.middleware.js";
 import userModel from "../dao/models/user.model.js";
 import session from "express-session";
+import { API_VERSION } from "../config/config.js";
 
 
 class SessionViewsRoutes {
@@ -14,6 +15,10 @@ class SessionViewsRoutes {
   }
   initSessionViewsRoutes(){
     // ****** ruta directa
+    this.router.get(`${this.path}`, async (req, res) =>{
+      return res.redirect(`/api/${API_VERSION}/login`);
+
+    })
     this.router.get(`${this.path}login`, async (req, res) =>{
       //algo
       try{

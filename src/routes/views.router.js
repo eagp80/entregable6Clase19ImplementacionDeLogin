@@ -18,29 +18,5 @@ router.get('/realtimeproducts', (req, res) => {
     res.render('realTimeProducts', {products})
 })
 
-// ****** ruta directa
-router.get("/login", async (req, res) => {
-    res.render("login");
-  });
-  
-  router.get("/register", async (req, res) => {
-    res.render("register");
-  });
-  
-  // TODO: Agregar middleware AUTH
-  router.get("/profile", authMdw, async (req, res) => {
-    const user = req.session.user._doc;
-    console.log("🚀 ~ file: views.routes.js:16 ~ router.get ~ user***:",  user);
-    res.render("profile", {
-     email:  user.email,
-     age: user.age,
-     last_name: user.last_name,
-      carrito: {
-        carritoId: "carrito-1",
-        productos: [{ productoId: "1", nombre: "camisa" }],
-      },
-    });
-  });
-
 export default router;
 
