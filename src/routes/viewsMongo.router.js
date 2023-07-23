@@ -181,12 +181,13 @@ class ViewsMongoRoutes {
         //console.log("docs");//para verificar si a docs se le colocaba status: true
         //console.log(docs);
       console.log(req.session);
-      if (req.session.user._doc.email === "eagp80@gmail.com") {
+      if (req.session.user._doc.email === "adminCoder@coder.com") {
         req.session.user._doc.rol="admin"
       }else{ req.session.user._doc.rol="user"}
 
         res.render("products", {
           rol: req.session?.user?._doc.rol,
+          first_name: req.session?.user?._doc.first_name,
           last_name: req.session?.user?._doc.last_name,
           email: req.session?.user?._doc.email,
           age: req.session?.user?._doc.age,
