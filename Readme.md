@@ -29,7 +29,7 @@
 
 - Agregar un sistema de roles, de manera que si colocamos en el login como correo adminCoder@coder.com, y la contraseña adminCod3r123, el usuario de la sesión además tenga un campo.((Hecho)).
 
-- Todos los usuarios que no sean admin deberán contar con un rol “usuario”.
+- Todos los usuarios que no sean admin deberán contar con un rol “usuario”. ((Hecho)).
 
 - Implementar botón de “logout” para destruir la sesión y redirigir a la vista de login.((Hecho)).
 ### TESTEO:
@@ -59,12 +59,10 @@
 - Link al repositorio de Github con el proyecto completo, sin la carpeta de node_modules. ((Hecho)).
 
 ### Sugerencias
--Recuerda que las vistas son importantes, más no el diseño, concéntrate en la funcionalidad de las sesiones antes que en la presentación.
--Cuida las redirecciones a las múltiples vistas.
+- Recuerda que las vistas son importantes, más no el diseño, concéntrate en la funcionalidad de las sesiones antes que en la presentación.
 
-### Se debe entregar
+- Cuida las redirecciones a las múltiples vistas.
 
--
 
 # **Checklist  ENTREGA ANTERIOR Segunda Pre-entrega del proyecto final**		
      
