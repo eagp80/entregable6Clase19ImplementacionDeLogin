@@ -3,6 +3,8 @@ import CartsMongoManager from "../dao/managers/cartMongo.manager.js";
 import ProductsMongoManager from "../dao/managers/productMongo.manager.js";
 import productMongoModel from "../dao/models/productsMongo.models.js";
 import { NODE_ENV, PORT, API_VERSION, CURSO } from "../config/config.js";
+import authMdw from "../middleware/auth.middleware.js";
+
 
 
 
@@ -117,7 +119,7 @@ class ViewsMongoRoutes {
    //*******************Vista de productos con paginacion*************************** */
    //******************************************************************************* */
    //******************************************************************************* */
-    this.router.get(`${this.path}/products`, async (req, res) => {
+    this.router.get(`${this.path}/products`,authMdw, async (req, res) => {
       try {
         const { page = 1, limit = 10, query, sort } = req.query;
         let q = {};
@@ -177,8 +179,12 @@ class ViewsMongoRoutes {
         
         //console.log("docs");//para verificar si a docs se le colocaba status: true
         //console.log(docs);
+      console.log(req.session);
 
         res.render("products", {
+          last_name: req.session?.user?._doc.last_name,
+          email: req.session?.user?._doc.email,
+          age: req.session?.user?._doc.age,
           payload: docs,
           totalPages: totalPages,
           prevPage: prevPage,
@@ -198,7 +204,7 @@ class ViewsMongoRoutes {
         })
       } catch (error) {
         console.log(
-          "🚀 ~ file: viewsMongo.router.js:106 ~ viewsMongoRoutes ~ this.router.put ~ error:",
+          "🚀 ~ file: viewsMongo.router.js:205 ~ viewsMongoRoutes ~ this.router.put ~ error:",
           error
         );
       }

@@ -38,10 +38,10 @@ class SessionViewsRoutes {
     })
 
 // TODO: Agregar middleware AUTH
-    this.router.get(`${this.path}profile`, async (req, res) =>{
+    this.router.get(`${this.path}profile`,authMdw, async (req, res) =>{
       //algo
       try{
-        const user = req.session.user._doc;
+        const user = req.session.user?._doc || "usuario no logueado";
         console.log("🚀 ~ file: sessionViews.routes.js:38 ~ SessionViewsRoutes ~ this.router.get ~ user:", user)
         res.render("profile", {
          email:  user.email,
