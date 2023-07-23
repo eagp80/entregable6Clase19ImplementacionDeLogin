@@ -23,6 +23,7 @@ class AppMongo {
     this.env = NODE_ENV || "development";//si NODE_ENV no esta definido tomar "development"
     this.port = PORT || 8000;
     this.db_cnn = DB_CNN;
+    this.api_version = API_VERSION;
 
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
@@ -84,6 +85,7 @@ class AppMongo {
       console.log(`🚀 App con Mongo-Atlas listening on the port ${this.port}`);
       console.log(`===================================================`);
       console.log(`===================================================`);
+      console.log(`Ruta de inicio -------> localhost:${this.port}/api/${this.api_version}`)
 
     });
   }

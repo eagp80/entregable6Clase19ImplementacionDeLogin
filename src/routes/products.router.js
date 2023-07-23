@@ -2,12 +2,15 @@ import {Router} from "express";
 import uploader from "../services/uploader.js";//salgo atras de routes y entro a services
 import ProductManager from '../dao/managers/productManager.js'//salgo de routes y estare en src
 const productManager = new ProductManager("./products.json");//instancia vacia
+
 const products =productManager.getProducts();//cargo los productos actuales del archivo
 productManager.products=products;//refrescamiento en caso de reinicio del servidor
 
 const ids = products.map(product => product.id);
-console.log("Arreglo con todos los ids disponibles de productos usando file-system:");
-console.log(ids);
+
+// console.log("Arreglo con todos los ids disponibles de productos usando file-system:");
+// console.log(ids);
+
 if(products.length!=0){
     ProductManager.contador = Math.max(...ids)+1;
 } else {ProductManager.contador =1};

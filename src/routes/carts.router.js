@@ -7,8 +7,10 @@ const carts =cartManager.getCarts();
 cartManager.carts=carts;
 
 const ids = carts.map(cart => cart.id);
-console.log("Arreglo con todos los ids disponibles de carritos usando file-system:");
-console.log(ids);
+
+// console.log("Arreglo con todos los ids disponibles de carritos usando file-system:");
+// console.log(ids);
+
 if(carts.length!=0){
     CartManager.contador = Math.max(...ids)+1;
 } else {CartManager.contador =1};
