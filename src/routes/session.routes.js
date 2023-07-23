@@ -78,6 +78,7 @@ class SessionRoutes {//no es un Router pero adentro tiene uno
         const newUser = await userModel.create(body);
         console.log("🚀 ~ file: session.routes.js:78 ~ SessionRoutes ~ this.router.post ~ newUser:", newUser);       
         req.session.user = { ...body };
+        if (req.session.user.email === "eagp80@gmail.com") {req.session.user.rol="admin"}
         return res.render("login");// OJO OJO OJO 
       } catch (error) {
       console.log("🚀 ~ file: session.routes.js:82 ~ SessionRoutes ~ this.router.post ~ error:", error);

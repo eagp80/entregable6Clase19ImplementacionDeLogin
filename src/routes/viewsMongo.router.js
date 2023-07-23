@@ -13,6 +13,7 @@ class ViewsMongoRoutes {
   router = Router();
   productMongoManager = new ProductsMongoManager();
   cartsMongoManager = new CartsMongoManager();
+  rol="user";
 
   constructor() {
     this.initViewsMongoRoutes();
@@ -180,8 +181,12 @@ class ViewsMongoRoutes {
         //console.log("docs");//para verificar si a docs se le colocaba status: true
         //console.log(docs);
       console.log(req.session);
+      if (req.session.user._doc.email === "eagp80@gmail.com") {
+        req.session.user._doc.rol="admin"
+      }else{ req.session.user._doc.rol="user"}
 
         res.render("products", {
+          rol: req.session?.user?._doc.rol,
           last_name: req.session?.user?._doc.last_name,
           email: req.session?.user?._doc.email,
           age: req.session?.user?._doc.age,
