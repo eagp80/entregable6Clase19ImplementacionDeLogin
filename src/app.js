@@ -18,17 +18,12 @@ import CartsMongoRoute from './routes/cartsMongo.router.js';
 import SessionRoutes from "./routes/session.routes.js";//OJO
 import SessionViewsRoutes from "./routes/sessionViews.routes.js";//OJO
 
-
 import displayRoutes from "express-routemap";
 import __dirname from './utils.js'
 import AppMongo from './appMongo.js'
 
-
-
-
-
 const app = express();
-//FLUJO DE TRABAJO..
+
 app.use(express.json()); //permite leer json en las peticiones (en req.body)
 //middlewar intercepta la peticion verifica si esta en json, covierte y continua
 app.use(express.urlencoded({extended:true}));// permite tener el objeto codificado desde url (formularios)
@@ -45,6 +40,7 @@ app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas e
 
 app.use('/',viewsRouter);//al llegar la ruta especificada lo procesa con viewsRouter
 
+//*****Se comenta este bloque de codigo para deshabilitar elservidor con file system */
 const serverHTTP = app.listen(8081, ()=>{
        console.log("Servidor con file-system en puerto 8081");
        console.log("Rutas disponibles con file-system en puerto 8081:");
@@ -52,9 +48,8 @@ const serverHTTP = app.listen(8081, ()=>{
        console.log("=================================================");
        console.log("=================================================");
 });
+
 const io= new Server (serverHTTP);
-
-
 
 const productManager = new ProductManager("./products.json");//en directorio de proyecto
 const products = productManager.getProducts();
@@ -78,23 +73,15 @@ io.on('connection', socket=>{
               console.log(data);
               io.emit('product', data)
           })            
-       // socket.on('post',data=>{
-
-       // io.emit('messageLogs', products)
-       // })
+       
        socket.on('put',data=>{
        
        io.emit('messageLogs', products)
 })
-// socket.on('authenticated',data=>{
-//        socket.emit('messageLogs', messages);
-//        socket.broadcast.emit('newUserConnected', data);
-// });
+
 });
 
-
 const appMongo = new AppMongo([
-       //new BaseRoute(),
        new CartsMongoRoute(),
        new ProductsMongoRoute(),
        new ViewsMongoRoutes(),//ojo
