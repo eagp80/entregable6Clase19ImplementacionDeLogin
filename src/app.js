@@ -1,19 +1,27 @@
+
 import express from "express";
 import {Server} from 'socket.io';
+import mongoose from "mongoose";
+
 //const cors = require("cors");
-import displayRoutes from "express-routemap";
 import { NODE_ENV, PORT, API_VERSION, CURSO } from "./config/config.js";
 import { mongoDBConnection } from "./db/mongo.config.js";
 import handlebars from "express-handlebars";
 import ProductManager from './dao/managers/productManager.js'
+
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
+import ViewsMongoRoutes from './routes/viewsMongo.router.js'
+import ProductsMongoRoute from './routes/productsMongo.router.js';
+import CartsMongoRoute from './routes/cartsMongo.router.js';
+import SessionRoutes from "./routes/session.routes.js";//OJO
+import SessionViewsRoutes from "./routes/sessionViews.routes.js";//OJO
+
+
+import displayRoutes from "express-routemap";
 import __dirname from './utils.js'
 import AppMongo from './appMongo.js'
-import CartsMongoRoute from './routes/cartsMongo.router.js';
-import ProductsMongoRoute from './routes/productsMongo.router.js';
-import ViewsMongoRoutes from './routes/viewsMongo.router.js'
 
 
 
@@ -90,6 +98,8 @@ const appMongo = new AppMongo([
        new CartsMongoRoute(),
        new ProductsMongoRoute(),
        new ViewsMongoRoutes(),//ojo
+       new SessionViewsRoutes(),
+       new SessionRoutes(),
      ]);
      
 appMongo.listen();
