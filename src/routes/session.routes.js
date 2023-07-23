@@ -56,6 +56,8 @@ class SessionRoutes {//no es un Router pero adentro tiene uno
           ...findUser, // estraigo todo propiedad por propiedad
           password: "", //borro password en la session no en la base de datos
         };
+
+        return res.redirect(`../views/products`)//************ */
     
         return res.render("profile", {//OJO OJO OJO
           last_name: req.session?.user?.last_name || findUser.last_name,
